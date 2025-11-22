@@ -1,6 +1,6 @@
-
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Eye } from 'lucide-react';
 import { Link } from 'wouter';
 import { useState } from 'react';
@@ -12,7 +12,7 @@ const showcaseProducts = [
     id: 1,
     name: 'Eternal Diamond Solitaire',
     price: '$12,500',
-    image: '/attached_assets/generated_images/diamond_solitaire_engagement_ring.png',
+    image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&h=800&fit=crop',
     badge: 'VIP Exclusive',
     verified: true,
     featured: true
@@ -21,7 +21,7 @@ const showcaseProducts = [
     id: 2,
     name: 'Luxe Gold Pendant Necklace',
     price: '$8,750',
-    image: '/attached_assets/generated_images/layered_gold_chain_necklace.png',
+    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&h=800&fit=crop',
     badge: 'VIP',
     verified: false,
     featured: false
@@ -30,7 +30,7 @@ const showcaseProducts = [
     id: 3,
     name: 'Diamond Tennis Bracelet',
     price: '$18,900',
-    image: '/attached_assets/generated_images/emerald_tennis_bracelet.png',
+    image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&h=800&fit=crop',
     badge: 'VIP',
     verified: false,
     featured: false
@@ -39,7 +39,7 @@ const showcaseProducts = [
     id: 4,
     name: 'Emerald & Diamond Earrings',
     price: '$9,200',
-    image: '/attached_assets/generated_images/platinum_diamond_stud_earrings.png',
+    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&h=800&fit=crop',
     badge: null,
     verified: false,
     featured: false
@@ -48,7 +48,7 @@ const showcaseProducts = [
     id: 5,
     name: 'Vintage Gold Brooch',
     price: '$4,500',
-    image: '/attached_assets/generated_images/ruby_vintage_ring.png',
+    image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&h=800&fit=crop',
     badge: null,
     verified: false,
     featured: false
@@ -65,48 +65,7 @@ export function ThreeDShowcase() {
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Featured Product - Large Display */}
-          <div className="lg:col-span-2">
-            <div className="relative bg-gradient-to-br from-neutral-50 to-white rounded-2xl overflow-hidden border border-neutral-200">
-              {/* Badges */}
-              <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
-                {featuredProduct.badge && (
-                  <Badge className="bg-[#B8860B] hover:bg-[#9a7209] text-white px-3 py-1 shadow-md">
-                    ✨ {featuredProduct.badge}
-                  </Badge>
-                )}
-                {featuredProduct.verified && (
-                  <Badge className="bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-1 shadow-md">
-                    Verified
-                  </Badge>
-                )}
-              </div>
-
-              {/* Product Image */}
-              <div className="aspect-[4/3] bg-gradient-to-br from-neutral-100 to-white flex items-center justify-center p-12">
-                <img
-                  src={featuredProduct.image}
-                  alt={featuredProduct.name}
-                  className="w-full h-full object-contain drop-shadow-2xl"
-                />
-              </div>
-
-              {/* Product Info */}
-              <div className="p-6 bg-white border-t border-neutral-200">
-                <h3 className="text-2xl font-serif font-bold text-neutral-900 mb-2">
-                  {featuredProduct.name}
-                </h3>
-                <p className="text-3xl font-bold text-[#B8860B] mb-4">
-                  {featuredProduct.price}
-                </p>
-                <Link href={`/product/${featuredProduct.id}`}>
-                  <Button className="w-full bg-[#B8860B] hover:bg-[#9a7209] text-white rounded-lg shadow-md">
-                    <Eye className="w-4 h-4 mr-2" />
-                    View Details
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
+         
 
           {/* More Pieces Sidebar */}
           <div className="lg:col-span-1">
@@ -114,39 +73,53 @@ export function ThreeDShowcase() {
               <h3 className="text-lg font-serif font-semibold text-neutral-900 mb-4 pb-3 border-b border-neutral-200">
                 More Pieces
               </h3>
-              <div className="space-y-3">
+              
+              {/* Vertical List */}
+              <div className="space-y-4 max-h-[600px] overflow-y-auto">
                 {moreProducts.map((product) => (
-                  <div 
+                  <div
                     key={product.id}
                     onClick={() => setSelected3DProduct(product)}
-                    className="p-3 bg-neutral-50 rounded-lg hover:bg-neutral-100 hover:shadow-sm transition-all cursor-pointer border border-transparent hover:border-neutral-200"
+                    className="group cursor-pointer w-full"
                   >
-                    <div className="flex items-center gap-3">
-                      {/* Thumbnail */}
-                      <div className="w-14 h-14 bg-white rounded-lg flex-shrink-0 overflow-hidden border border-neutral-200">
+                      {/* Product Image */}
+                      <div className="relative aspect-[3/4] bg-gradient-to-br from-neutral-50 to-white rounded-xl overflow-hidden border-2 border-neutral-200 hover:border-[#B8860B] transition-all mb-3 shadow-sm hover:shadow-lg">
                         <img
                           src={product.image}
                           alt={product.name}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
-                      </div>
-
-                      {/* Info */}
-                      <div className="flex-1 min-w-0">
-                        <h4 className="font-semibold text-neutral-900 text-sm truncate mb-1">
-                          {product.name}
-                        </h4>
-                        <p className="text-[#B8860B] font-bold text-base">
-                          {product.price}
-                        </p>
+                        
+                        {/* Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        
+                        {/* Eye Icon Overlay */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="bg-white/95 rounded-full p-3 shadow-xl transform scale-90 group-hover:scale-100 transition-transform">
+                            <Eye className="w-6 h-6 text-[#B8860B]" />
+                          </div>
+                        </div>
+                        
+                        {/* Badges */}
                         {product.badge && (
-                          <Badge className="bg-[#B8860B]/10 text-[#B8860B] text-xs mt-1 px-2 py-0.5">
-                            {product.badge}
-                          </Badge>
+                          <div className="absolute top-3 left-3">
+                            <Badge className="bg-[#B8860B] hover:bg-[#9a7209] text-white text-xs px-2.5 py-1 shadow-md">
+                              ✨ {product.badge}
+                            </Badge>
+                          </div>
                         )}
                       </div>
+
+                      {/* Product Info */}
+                      <div className="px-1 space-y-1">
+                        <h4 className="font-semibold text-neutral-900 text-sm leading-tight line-clamp-2 group-hover:text-[#B8860B] transition-colors">
+                          {product.name}
+                        </h4>
+                        <p className="text-[#B8860B] font-bold text-xl">
+                          {product.price}
+                        </p>
+                      </div>
                     </div>
-                  </div>
                 ))}
               </div>
             </div>
@@ -162,7 +135,7 @@ export function ThreeDShowcase() {
               {selected3DProduct?.name}
             </DialogTitle>
           </DialogHeader>
-          
+
           <div className="grid md:grid-cols-2 gap-6 mt-4">
             {/* Left: 3D Model Viewer */}
             <div className="bg-neutral-50 rounded-xl overflow-hidden border border-neutral-200">
@@ -192,7 +165,7 @@ export function ThreeDShowcase() {
                     </Badge>
                   )}
                 </div>
-                
+
                 <Link href={`/product/${selected3DProduct?.id}`}>
                   <Button className="w-full bg-[#B8860B] hover:bg-[#9a7209] text-white">
                     View Full Details
