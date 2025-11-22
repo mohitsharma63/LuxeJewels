@@ -199,10 +199,10 @@ export default function Catalog() {
         </section>
 
         {/* Products Grid */}
-        <section className="py-12 px-4">
+        <section className="py-8 md:py-12 px-3 md:px-4">
           <div className="max-w-7xl mx-auto">
             {isLoading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 gap-3 md:gap-4">
                 {[...Array(8)].map((_, i) => (
                   <div key={i} className="space-y-4">
                     <Skeleton className="aspect-square w-full rounded-lg" />
@@ -212,7 +212,7 @@ export default function Catalog() {
                 ))}
               </div>
             ) : sortedProducts && sortedProducts.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                 {sortedProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}

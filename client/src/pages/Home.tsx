@@ -94,16 +94,20 @@ export default function Home() {
                 Discover our handpicked selection of exquisite jewelry pieces, crafted with precision and elegance
               </p>
             </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                {featuredProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            {/* <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
               {featuredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
-            </div>
+            </div> */}
 
-            <div className="text-center">
+            <div className="text-center mt-4">
               <Link href="/catalog">
-                <Button size="lg" className="bg-[hsl(35,28%,53%)]hover:bg-amber-700 text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all">
+                <Button size="sm" className="bg-[hsl(35,28%,53%)]hover:bg-amber-700 text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all">
                   View Full Collection
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>

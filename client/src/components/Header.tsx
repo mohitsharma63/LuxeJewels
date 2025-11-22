@@ -9,13 +9,11 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const navLinks = [
-    { label: "Home", path: "/" },
-    { label: "Catalog", path: "/catalog" },
-    { label: "Rings", path: "/catalog?category=rings" },
-    { label: "Necklaces", path: "/catalog?category=necklaces" },
-    { label: "Bracelets", path: "/catalog?category=bracelets" },
-    { label: "Earrings", path: "/catalog?category=earrings" },
+  const categories = [
+    { name: "Rings", path: "/catalog?category=rings" },
+    { name: "Necklaces", path: "/catalog?category=necklaces" },
+    { name: "Bracelets", path: "/catalog?category=bracelets" },
+    { name: "Earrings", path: "/catalog?category=earrings" },
   ];
 
   return (
@@ -29,15 +27,35 @@ export function Header() {
           </Link>
 
           <nav className="hidden lg:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link key={link.path} href={link.path}>
+            <Link href="/" >
+              <span
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  location === "/" ? "text-primary" : "text-foreground/80"
+                } cursor-pointer`}
+                data-testid="link-home"
+              >
+                Home
+              </span>
+            </Link>
+            <Link href="/catalog">
+              <span
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  location === "/catalog" ? "text-primary" : "text-foreground/80"
+                } cursor-pointer`}
+                data-testid="link-catalog"
+              >
+                Catalog
+              </span>
+            </Link>
+            {categories.map((category) => (
+              <Link key={category.path} href={category.path}>
                 <span
                   className={`text-sm font-medium transition-colors hover:text-primary ${
-                    location === link.path ? "text-primary" : "text-foreground/80"
+                    location === category.path ? "text-primary" : "text-foreground/80"
                   } cursor-pointer`}
-                  data-testid={`link-${link.label.toLowerCase()}`}
+                  data-testid={`link-${category.name.toLowerCase()}`}
                 >
-                  {link.label}
+                  {category.name}
                 </span>
               </Link>
             ))}
@@ -88,15 +106,35 @@ export function Header() {
                   className="bg-transparent border-none outline-none text-sm w-full placeholder:text-muted-foreground"
                 />
               </div>
-              {navLinks.map((link) => (
-                <Link key={link.path} href={link.path}>
+              <Link href="/">
+                <span
+                  className={`block text-sm font-medium py-2 ${
+                    location === "/" ? "text-primary" : "text-foreground/80"
+                  } cursor-pointer`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Home
+                </span>
+              </Link>
+              <Link href="/catalog">
+                <span
+                  className={`block text-sm font-medium py-2 ${
+                    location === "/catalog" ? "text-primary" : "text-foreground/80"
+                  } cursor-pointer`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Catalog
+                </span>
+              </Link>
+              {categories.map((category) => (
+                <Link key={category.path} href={category.path}>
                   <span
                     className={`block text-sm font-medium py-2 ${
-                      location === link.path ? "text-primary" : "text-foreground/80"
+                      location === category.path ? "text-primary" : "text-foreground/80"
                     } cursor-pointer`}
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {link.label}
+                    {category.name}
                   </span>
                 </Link>
               ))}

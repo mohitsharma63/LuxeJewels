@@ -28,14 +28,14 @@ export function ProductCard({ product }: ProductCardProps) {
         <Card className="group overflow-hidden border-2 border-border hover:border-primary/50 hover:shadow-2xl transition-all duration-500 cursor-pointer rounded-xl">
         <div className="relative aspect-square overflow-hidden bg-neutral-100">
           {/* Badges */}
-          <div className="absolute top-3 left-3 z-10 flex flex-col gap-2">
+          <div className="absolute top-2 left-2 md:top-3 md:left-3 z-10 flex flex-col gap-1.5 md:gap-2">
             {product.isVerified && (
-              <Badge className="bg-[#8B7355] hover:bg-[#7a6449] text-white text-xs px-2 py-1">
+              <Badge className="bg-[#8B7355] hover:bg-[#7a6449] text-white text-[10px] md:text-xs px-1.5 py-0.5 md:px-2 md:py-1">
                 VERIFIED
               </Badge>
             )}
             {product.isNew && (
-              <Badge className="bg-neutral-800 hover:bg-neutral-900 text-white text-xs px-2 py-1">
+              <Badge className="bg-neutral-800 hover:bg-neutral-900 text-white text-[10px] md:text-xs px-1.5 py-0.5 md:px-2 md:py-1">
                 NEW
               </Badge>
             )}
@@ -49,8 +49,8 @@ export function ProductCard({ product }: ProductCardProps) {
             loading="lazy"
           />
 
-          {/* Quick Actions Overlay */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+          {/* Quick Actions Overlay - Hidden on Mobile */}
+          <div className="hidden md:flex absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300 items-center justify-center opacity-0 group-hover:opacity-100">
             <div className="flex gap-2">
               <Button
                 size="sm"
@@ -83,25 +83,25 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {/* Card Content */}
-        <div className="p-6 space-y-4 bg-white rounded-b-2xl">
+        <div className="p-3 md:p-6 space-y-2 md:space-y-4 bg-white rounded-b-2xl">
           <div>
-            <h3 className="font-serif text-xl font-semibold text-neutral-900 group-hover:text-amber-700 transition-colors line-clamp-1">
+            <h3 className="font-serif text-base md:text-xl font-semibold text-neutral-900 group-hover:text-amber-700 transition-colors line-clamp-1">
               {product.name}
             </h3>
-            <p className="text-xs text-neutral-500 mt-1 tracking-wider uppercase">
+            <p className="text-[10px] md:text-xs text-neutral-500 mt-0.5 md:mt-1 tracking-wider uppercase">
               {product.category}
             </p>
-            <p className="text-sm text-neutral-600 mt-2 line-clamp-2">
+            <p className="text-xs md:text-sm text-neutral-600 mt-1 md:mt-2 line-clamp-2">
               {product.description}
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 md:gap-2">
             <div className="flex">
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={`w-4 h-4 ${
+                  className={`w-3 h-3 md:w-4 md:h-4 ${
                     i < Math.floor(parseFloat(product.rating))
                       ? "fill-amber-400 text-amber-400"
                       : "fill-neutral-200 text-neutral-200"
@@ -109,17 +109,17 @@ export function ProductCard({ product }: ProductCardProps) {
                 />
               ))}
             </div>
-            <span className="text-sm font-medium text-neutral-900">{product.rating}</span>
+            <span className="text-xs md:text-sm font-medium text-neutral-900">{product.rating}</span>
           </div>
 
-          <div className="flex items-center justify-between pt-3 border-t border-neutral-200">
+          <div className="flex items-center justify-between pt-2 md:pt-3 border-t border-neutral-200">
             <div className="text-left">
-              <p className="text-2xl font-serif font-bold text-amber-700">
+              <p className="text-lg md:text-2xl font-serif font-bold text-amber-700">
                 ${product.price.toLocaleString()}
               </p>
             </div>
             <Button
-              className="bg-[hsl(35,28%,53%)]hover:bg-amber-700 text-white px-6 rounded-xl shadow-md hover:shadow-lg transition-all"
+              className="bg-[hsl(35,28%,53%)] hover:bg-amber-700 text-white px-4 md:px-6 py-2 text-sm md:text-base rounded-xl shadow-md hover:shadow-lg transition-all"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();

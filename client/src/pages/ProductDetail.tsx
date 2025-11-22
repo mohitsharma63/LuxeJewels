@@ -238,7 +238,7 @@ export default function ProductDetail() {
 
       {/* 3D View Dialog */}
       <Dialog open={show3DView} onOpenChange={setShow3DView}>
-        <DialogContent className="max-w-4xl">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="font-serif text-2xl">{product.name} - 3D View</DialogTitle>
           </DialogHeader>
