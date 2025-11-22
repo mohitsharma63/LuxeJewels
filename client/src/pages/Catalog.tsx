@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Header } from "@/components/Header";
@@ -30,31 +29,31 @@ export default function Catalog() {
   const [location] = useLocation();
   const searchParams = new URLSearchParams(location.split('?')[1]);
   const categoryParam = searchParams.get('category');
-  
+
   const [selectedCategory, setSelectedCategory] = useState<string>(categoryParam || "all");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("newest");
 
   const bannerImages = [
     {
-      url: "/attached_assets/ot5vpe-my-site-abhqo702-coderaftindia.wix-vibe.com_catalog_1763811371735.png",
-      title: "New Collection",
-      subtitle: "Discover our latest jewelry pieces"
-    },
-    {
-      url: "/attached_assets/image_1763811491403.png",
       title: "Premium Quality",
-      subtitle: "Handcrafted with excellence"
+      subtitle: "Handcrafted with excellence",
+      url: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200&h=500&fit=crop"
     },
     {
-      url: "/attached_assets/image_1763811822343.png",
-      title: "Elegant Designs",
-      subtitle: "Timeless beauty for every occasion"
+      title: "Timeless Elegance",
+      subtitle: "Discover our exclusive collection",
+      url: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=1200&h=500&fit=crop"
     },
     {
-      url: "/attached_assets/ot5vpe-my-site-abhqo702-coderaftindia.wix-vibe.com__1763809636815.png",
-      title: "Exclusive Offer",
-      subtitle: "Limited edition pieces available"
+      title: "Exquisite Craftsmanship",
+      subtitle: "Jewelry that tells your story",
+      url: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=1200&h=500&fit=crop"
+    },
+    {
+      title: "Luxury Redefined",
+      subtitle: "Experience unmatched brilliance",
+      url: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1200&h=500&fit=crop"
     }
   ];
 
@@ -85,7 +84,7 @@ export default function Catalog() {
   return (
     <div className="min-h-screen flex flex-col bg-[#faf9f6]">
       <Header />
-      
+
       <main className="flex-1">
         {/* Banner Slider */}
         <section className="bg-white border-b border-neutral-200">
