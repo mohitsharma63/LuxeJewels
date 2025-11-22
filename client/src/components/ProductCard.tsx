@@ -138,7 +138,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <DialogTitle className="font-serif text-2xl">{product.name} - 3D View</DialogTitle>
         </DialogHeader>
         <div className="mt-4">
-          <ModelViewer />
+          <ModelViewer modelUrl={product.model3d || undefined} />
         </div>
         <p className="text-sm text-muted-foreground text-center mt-4">
           Drag to rotate • Scroll to zoom • Click to pan

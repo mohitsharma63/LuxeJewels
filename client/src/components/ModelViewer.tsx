@@ -1,11 +1,17 @@
+
 import { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, PerspectiveCamera, Environment } from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera, Environment, useGLTF } from "@react-three/drei";
 import { Button } from "@/components/ui/button";
 import { RotateCcw, Info } from "lucide-react";
 import * as THREE from "three";
 
-function RotatingBox({ color = "#C9A55B" }: { color?: string }) {
+interface JewelryModelProps {
+  modelUrl?: string;
+  color?: string;
+}
+
+function JewelryModel({ modelUrl, color = "#C9A55B" }: JewelryModelProps) {
   const meshRef = useRef<THREE.Mesh>(null);
 
   useFrame((state, delta) => {
@@ -14,27 +20,61 @@ function RotatingBox({ color = "#C9A55B" }: { color?: string }) {
     }
   });
 
-  return (
-    <mesh ref={meshRef} castShadow receiveShadow>
-      <torusKnotGeometry args={[1, 0.3, 128, 16]} />
-      <meshStandardMaterial
-        color={color}
-        metalness={0.9}
-        roughness={0.1}
-        envMapIntensity={1}
+  // If no model URL is provided, show the placeholder
+  if (!modelUrl) {
+    return (
+      <mesh ref={meshRef} castShadow receiveShadow>
+        <torusKnotGeometry args={[1, 0.3, 128, 16]} />
+        <meshStandardMaterial
+          color={color}
+          metalness={0.9}
+          roughness={0.1}
+          envMapIntensity={1}
+        />
+      </mesh>
+    );
+  }
+
+  // Load and display the 3D model
+  try {
+    const gltf = useGLTF(modelUrl);
+    return (
+      <primitive 
+        ref={meshRef}
+        object={gltf.scene} 
+        scale={2}
+        castShadow
+        receiveShadow
       />
-    </mesh>
-  );
+    );
+  } catch (error) {
+    // Fallback to placeholder if model fails to load
+    return (
+      <mesh ref={meshRef} castShadow receiveShadow>
+        <torusKnotGeometry args={[1, 0.3, 128, 16]} />
+        <meshStandardMaterial
+          color={color}
+          metalness={0.9}
+          roughness={0.1}
+          envMapIntensity={1}
+        />
+      </mesh>
+    );
+  }
 }
 
-function Scene() {
+interface ModelViewerProps {
+  modelUrl?: string;
+}
+
+function Scene({ modelUrl }: ModelViewerProps) {
   return (
     <>
       <PerspectiveCamera makeDefault position={[0, 0, 5]} />
       <ambientLight intensity={0.5} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
       <pointLight position={[-10, -10, -10]} intensity={0.5} />
-      <RotatingBox />
+      <JewelryModel modelUrl={modelUrl} />
       <Environment preset="studio" />
       <OrbitControls
         enablePan={true}
@@ -47,7 +87,7 @@ function Scene() {
   );
 }
 
-export function ModelViewer() {
+export function ModelViewer({ modelUrl }: ModelViewerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const resetCamera = () => {
@@ -63,7 +103,7 @@ export function ModelViewer() {
         gl={{ antialias: true, alpha: true }}
       >
         <Suspense fallback={null}>
-          <Scene />
+          <Scene modelUrl={modelUrl} />
         </Suspense>
       </Canvas>
 

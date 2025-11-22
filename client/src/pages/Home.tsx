@@ -2,6 +2,9 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { FeaturedCollections } from "@/components/FeaturedCollections";
+import { BlogSection } from "@/components/BlogSection";
+import { UGCVideoSection } from "@/components/UGCVideoSection";
+import { ThreeDShowcase } from "@/components/ThreeDShowcase";
 import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
@@ -110,6 +113,12 @@ export default function Home() {
         </section>
 
         <FeaturedCollections />
+        
+        <ThreeDShowcase />
+        
+        <UGCVideoSection />
+        
+        <BlogSection />
         
         {/* Trust & Quality Section */}
         <section className="py-20 px-4 bg-background">
