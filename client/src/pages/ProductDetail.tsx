@@ -195,7 +195,7 @@ export default function ProductDetail() {
                 </div>
               )}
 
-              <Button size="lg" className="w-full bg-amber-600 hover:bg-amber-700 text-white shadow-md hover:shadow-lg" data-testid="button-add-to-cart">
+              <Button size="lg" className="w-full bg-[hsl(35,28%,53%)]hover:bg-amber-700 text-white shadow-md hover:shadow-lg" data-testid="button-add-to-cart">
                 <ShoppingBag className="w-5 h-5 mr-2" />
                 Add to Cart
               </Button>

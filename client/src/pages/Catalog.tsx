@@ -24,6 +24,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import heroVideo from "@assets/generated_videos/hero_jewelry_showcase_video.mp4";
+import collectionVideo from "@assets/generated_videos/premium_collection_showcase_video.mp4";
 
 export default function Catalog() {
   const [location] = useLocation();
@@ -34,26 +36,26 @@ export default function Catalog() {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("newest");
 
-  const bannerImages = [
+  const bannerVideos = [
     {
       title: "Premium Quality",
       subtitle: "Handcrafted with excellence",
-      url: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200&h=500&fit=crop"
+      video: heroVideo
     },
     {
       title: "Timeless Elegance",
       subtitle: "Discover our exclusive collection",
-      url: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=1200&h=500&fit=crop"
+      video: collectionVideo
     },
     {
       title: "Exquisite Craftsmanship",
       subtitle: "Jewelry that tells your story",
-      url: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=1200&h=500&fit=crop"
+      video: heroVideo
     },
     {
       title: "Luxury Redefined",
       subtitle: "Experience unmatched brilliance",
-      url: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1200&h=500&fit=crop"
+      video: collectionVideo
     }
   ];
 
@@ -101,14 +103,18 @@ export default function Catalog() {
             className="w-full"
           >
             <CarouselContent>
-              {bannerImages.map((banner, index) => (
+              {bannerVideos.map((banner, index) => (
                 <CarouselItem key={index}>
-                  <div className="relative h-[350px] md:h-[450px] lg:h-[500px] w-full overflow-hidden bg-neutral-100">
-                    <img
-                      src={banner.url}
-                      alt={banner.title}
+                  <div className="relative h-[350px] md:h-[450px] lg:h-[500px] w-full overflow-hidden bg-black">
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
                       className="w-full h-full object-cover"
-                    />
+                    >
+                      <source src={banner.video} type="video/mp4" />
+                    </video>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end">
                       <div className="p-8 md:p-12 lg:p-16 text-white max-w-3xl">
                         <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold mb-3">
@@ -141,7 +147,7 @@ export default function Catalog() {
         </section>
 
         {/* Search and Filters Bar */}
-        <section className="bg-white py-6 px-4 border-b border-neutral-200 sticky top-20 z-40">
+        <section className="bg-white py-6 px-4 border-b border-neutral-200  top-20 z-40">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
               {/* Search */}

@@ -66,7 +66,7 @@ export function BlogSection() {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-amber-600 text-white text-xs font-medium px-3 py-1 rounded-full">
+                  <span className="bg-[hsl(35,28%,53%)]text-white text-xs font-medium px-3 py-1 rounded-full">
                     {post.category}
                   </span>
                 </div>

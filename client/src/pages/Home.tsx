@@ -4,7 +4,7 @@ import { Hero } from "@/components/Hero";
 import { FeaturedCollections } from "@/components/FeaturedCollections";
 import { BlogSection } from "@/components/BlogSection";
 import { UGCVideoSection } from "@/components/UGCVideoSection";
-import { ThreeDShowcase } from "@/components/ThreeDShowcase";
+
 import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
@@ -20,7 +20,7 @@ export default function Home() {
       name: "Emerald Bracelet",
       description: "Exquisite 14K white gold bracelet featuring stunning emerald stones with intricate vintage design",
       price: 4500,
-      image: "/attached_assets/generated_images/emerald_tennis_bracelet.png",
+      image: new URL('@assets/generated_images/emerald_tennis_bracelet.png', import.meta.url).href,
       category: "Bracelets",
       model3d: null,
       isVerified: true,
@@ -35,7 +35,7 @@ export default function Home() {
       name: "Diamond Solitaire Ring",
       description: "Classic platinum engagement ring with brilliant cut diamond centerpiece",
       price: 8900,
-      image: "/attached_assets/generated_images/diamond_solitaire_engagement_ring.png",
+      image: new URL('@assets/generated_images/diamond_solitaire_engagement_ring.png', import.meta.url).href,
       category: "Rings",
       model3d: null,
       isVerified: true,
@@ -50,7 +50,7 @@ export default function Home() {
       name: "Sapphire Pendant Necklace",
       description: "Elegant blue sapphire pendant on delicate platinum chain",
       price: 3200,
-      image: "/attached_assets/generated_images/blue_sapphire_pendant_necklace.png",
+      image: new URL('@assets/generated_images/blue_sapphire_pendant_necklace.png', import.meta.url).href,
       category: "Necklaces",
       model3d: null,
       isVerified: true,
@@ -65,7 +65,7 @@ export default function Home() {
       name: "Diamond Pavé Hoops",
       description: "Stunning pavé diamond hoop earrings in 18K white gold",
       price: 5600,
-      image: "/attached_assets/generated_images/diamond_pavé_hoop_earrings.png",
+      image: new URL('@assets/generated_images/diamond_pavé_hoop_earrings.png', import.meta.url).href,
       category: "Earrings",
       model3d: null,
       isVerified: true,
@@ -103,7 +103,7 @@ export default function Home() {
 
             <div className="text-center">
               <Link href="/catalog">
-                <Button size="lg" className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all">
+                <Button size="lg" className="bg-[hsl(35,28%,53%)]hover:bg-amber-700 text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all">
                   View Full Collection
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
@@ -114,7 +114,7 @@ export default function Home() {
 
         <FeaturedCollections />
         
-        <ThreeDShowcase />
+     
         
         <UGCVideoSection />
         

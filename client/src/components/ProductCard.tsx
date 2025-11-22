@@ -1,12 +1,13 @@
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Star, Eye, Heart, Box } from "lucide-react";
+import { Star, Eye, Heart, Box, ShieldCheck } from "lucide-react";
 import type { Product } from "@shared/schema";
 import { Link } from "wouter";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ModelViewer } from "./ModelViewer";
+import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
   product: Product;
@@ -24,7 +25,7 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <>
       <Link href={`/product/${product.id}`}>
-        <Card className="group cursor-pointer overflow-hidden bg-white border-neutral-200 hover:shadow-lg transition-all duration-300">
+        <Card className="group overflow-hidden border-2 border-border hover:border-primary/50 hover:shadow-2xl transition-all duration-500 cursor-pointer rounded-xl">
         <div className="relative aspect-square overflow-hidden bg-neutral-100">
           {/* Badges */}
           <div className="absolute top-3 left-3 z-10 flex flex-col gap-2">
@@ -118,7 +119,7 @@ export function ProductCard({ product }: ProductCardProps) {
               </p>
             </div>
             <Button
-              className="bg-amber-600 hover:bg-amber-700 text-white px-6 rounded-xl shadow-md hover:shadow-lg transition-all"
+              className="bg-[hsl(35,28%,53%)]hover:bg-amber-700 text-white px-6 rounded-xl shadow-md hover:shadow-lg transition-all"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
